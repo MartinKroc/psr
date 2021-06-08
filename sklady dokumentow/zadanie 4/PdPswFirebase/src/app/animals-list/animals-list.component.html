@@ -1,0 +1,44 @@
+<h3>Lista zwierząt</h3>
+<div *ngFor="let animal of animals">
+  <p>ID: {{animal.$key}}</p>
+  <p>nazwa: {{animal.name}}</p>
+  <p>gatunek: {{animal.type}}</p>
+  <p>waga: {{animal.weight}}</p>
+  <button (click)="delAnimal(animal.$key)">usuń</button>
+  <hr/>
+</div>
+<h3>Dodaj zwierze</h3>
+<form #anForm = "ngForm" (ngSubmit)="onSub(anForm.value)">
+  <input type = "text" name = "name" placeholder = "name" ngModel>
+  <br/>
+  <input type = "text" name = "type" placeholder = "type" ngModel>
+  <br/>
+  <input type = "text" name = "weight" placeholder = "weight" ngModel>
+  <br/>
+  <button type="submit">Dodaj zwierze</button>
+</form>
+<h3>Aktualizuj zwierze</h3>
+<form #anuForm = "ngForm" (ngSubmit)="onSubUpdate(anuForm.value)">
+  <input type = "text" name = "$key" placeholder = "key" ngModel>
+  <br/>
+  <input type = "text" name = "name" placeholder = "name" ngModel>
+  <br/>
+  <input type = "text" name = "type" placeholder = "type" ngModel>
+  <br/>
+  <input type = "text" name = "weight" placeholder = "weight" ngModel>
+  <br/>
+  <button type="submit">Dodaj zwierze</button>
+</form>
+<h3>Pobierz zwierze po id</h3>
+<form #angForm = "ngForm" (ngSubmit)="getById(angForm.value)">
+  <input type = "text" name = "$key" placeholder = "key" ngModel>
+  <br/>
+  <button type="submit">Pobierz</button>
+</form>
+<div *ngIf="singleAnimal">
+  <p>nazwa: {{singleAnimal.name}}</p>
+  <p>waga: {{singleAnimal.weight}}</p>
+  <p>gatunek: {{singleAnimal.type}}</p>
+</div>
+<button (click)="queryAnimals()">Pobierz zwierzęta po zapytaniu ( waga równa 33 )</button><br/>
+<button (click)="proc()">Przetwarzanie danych ( ustaw wage = 5 jeśli gatunek to ssak )</button>
